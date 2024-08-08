@@ -13,25 +13,10 @@ public class Sketch extends PApplet {
     public void setup() {
         System.out.println(System.getProperty("user.dir"));
         GrammarSettings settings = GrammarSettingsLoader.loadGrammarFromConfigFile();
-        TurtleState initialState = new TurtleState.
-                Builder()
-                .setAlpha(255)
-                .setAngleIncrement(5.0f)
-                .setHeading(0)
-                .setRed(255)
-                .setBlue(140)
-                .setGreen(140)
-                .setLineLength(250)
-                .setLineLengthScalar(0.85f)
-                .setTurningAngle(20)
-                .setY(displayHeight)
-                .setX(displayWidth/2)
-                .setLineWidth(25)
-                .setColorChangeRate(20)
-                .setColorChangeRateAcceleration(0.5f)
-                .build();
+        settings.initialDrawingState.setX(displayWidth/2);
+        settings.initialDrawingState.setY(displayHeight);
 
-        tortle = new GrammarTurtle(this,  null, initialState);
+        tortle = new GrammarTurtle(this,  null, settings.initialDrawingState);
         background(0,0,0);
     }
 
