@@ -1,24 +1,24 @@
 {
   "axiom": "XFX",
   "initialDrawingState": {
-      "lineWidth":  25,
-      "lineLength": 120,
-      "lineLengthScalar": 0.82,
-      "turningAngle": 30,
-      "angleIncrement": 5,
-      "heading": 270,
-      "colorChangeRate": 5,
-      "red": 140,
-      "green":  255,
-      "blue": 140,
-      "x": 0,
-      "y": 0,
-      "polygonIsOpen": false,
-      "turningSign": 1.0,
-      "alpha": 255,
-      "colorRateAcceleration": 5,
-      "alphaIncrement": 2,
-      "lineWidth578Increment": 3
+    "lineWidth": 4,
+    "lineLength": 12,
+    "lineLengthScalar": 0.82,
+    "turningAngle": 30,
+    "angleIncrement": 5,
+    "heading": 270,
+    "colorChangeRate": 5,
+    "red": 140,
+    "green": 255,
+    "blue": 140,
+    "x": 0,
+    "y": 0,
+    "polygonIsOpen": false,
+    "turningSign": 1.0,
+    "alpha": 255,
+    "colorRateAcceleration": 5,
+    "alphaIncrement": 2,
+    "lineWidth578Increment": 3
   },
   "grammarOperations": [
     {
@@ -32,6 +32,20 @@
         {
           "value": "XFF",
           "weight": 3
+        }
+      ]
+    },
+    {
+      "operationName": "right",
+      "operationSymbol": "X",
+      "operationExpansionWeights": [
+        {
+          "value": "XFFX",
+          "weight": 20
+        },
+        {
+          "value": "X",
+          "weight": 1
         }
       ]
     }

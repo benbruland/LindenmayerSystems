@@ -1,4 +1,4 @@
-package com.sketch.Utility;
+package com.sketch.Drawing.Utility;
 
 public class WeightedItem<T> {
     T value;

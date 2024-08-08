@@ -1,4 +1,4 @@
-package com.sketch.Utility;
+package com.sketch.Drawing.Utility;
 
 public class GrammarOperation {
     public String operationName;

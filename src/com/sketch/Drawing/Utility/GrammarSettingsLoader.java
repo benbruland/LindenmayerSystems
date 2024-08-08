@@ -1,4 +1,4 @@
-package com.sketch.Utility;
+package com.sketch.Drawing.Utility;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;

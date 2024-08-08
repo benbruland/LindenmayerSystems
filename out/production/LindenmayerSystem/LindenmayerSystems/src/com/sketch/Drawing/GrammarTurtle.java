@@ -13,12 +13,28 @@ public class GrammarTurtle {
     private Stack<TurtleState> states;
     private Grammar grammar;
 
-    public GrammarTurtle(Sketch sketch, Grammar grammar, TurtleState initialState) {
+    public GrammarTurtle(Sketch sketch, TurtleState initialState) {
         this.state = initialState;
-        this.grammar = grammar;
         this.sketch = sketch;
         this.states = new Stack<>();
-        SetSketchParams(initialState);
+        setSketchParams(initialState);
+    }
+
+    public void drawGrammar(int instructionIndex) {
+        grammar.execGrammar(instructionIndex);
+    }
+
+    public void setGrammar(Grammar grammar) {
+        this.grammar = grammar;
+    }
+
+    public void setState(TurtleState state) {
+        this.states = new Stack<>();
+        this.state = state;
+    }
+
+    public Grammar getGrammar() {
+        return this.grammar;
     }
 
     public void pushState() {
@@ -28,10 +44,10 @@ public class GrammarTurtle {
     public void popState() {
         if (!states.empty()) {
             TurtleState newState = states.pop();
-            SetSketchParams(newState);
+            setSketchParams(newState);
         }
     }
-    public void SetSketchParams(TurtleState state) {
+    public void setSketchParams(TurtleState state) {
         sketch.stroke(state.getRed(), state.getBlue(), state.getGreen(), state.getAlpha());
         sketch.strokeWeight(state.getLineWidth());
         sketch.fill(state.getRed(), state.getBlue(), state.getGreen(), state.getAlpha());

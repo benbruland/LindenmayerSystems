@@ -1,4 +1,4 @@
-package com.sketch.Utility;
+package com.sketch.Drawing.Utility;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ public class WeightedBag<T> {
         }
 
         this.weights.add(item.weight + previousWeight);
+        this.bagResidents.add(item);
     }
 
     public boolean isEmpty() {
