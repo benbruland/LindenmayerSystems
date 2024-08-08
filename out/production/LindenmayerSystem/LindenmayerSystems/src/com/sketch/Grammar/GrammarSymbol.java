@@ -6,7 +6,7 @@ import com.sketch.Drawing.Utility.WeightedItem;
 
 public abstract class GrammarSymbol {
 
-    char symbol;
+    Character symbol;
     public WeightedBag<String> expansions;
     protected GrammarTurtle turtle;
 

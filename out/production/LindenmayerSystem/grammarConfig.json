@@ -1,8 +1,8 @@
 {
-  "axiom": "XFX",
+  "axiom": "AFA",
   "initialDrawingState": {
     "lineWidth": 4,
-    "lineLength": 12,
+    "lineLength": 2,
     "lineLengthScalar": 0.82,
     "turningAngle": 30,
     "angleIncrement": 5,
@@ -40,12 +40,26 @@
       "operationSymbol": "X",
       "operationExpansionWeights": [
         {
-          "value": "XFFX",
+          "value": "XFF",
           "weight": 20
         },
         {
           "value": "X",
           "weight": 1
+        }
+      ]
+    },
+    {
+      "operationName": "noop",
+      "operationSymbol": "A",
+      "operationExpansionWeights": [
+        {
+          "value": "AFX",
+          "weight": 9
+        },
+        {
+          "value": "AAAAAAAAAAAA",
+          "weight": 2
         }
       ]
     }

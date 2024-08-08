@@ -91,6 +91,10 @@ public class GrammarFactory {
             case "right":
                 newSymbol = new Right(opSymbol, turtle);
                 break;
+            case "noop":
+                // Used for non-terminal expansions
+                newSymbol = new NoOp(opSymbol, turtle);
+                break;
             default:
                 return null;
         }

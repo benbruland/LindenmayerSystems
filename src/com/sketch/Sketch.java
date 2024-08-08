@@ -17,7 +17,7 @@ public class Sketch extends PApplet {
     public void setup() {
 
         instructionIndex = 0;
-        symbolsToExecutePerFrame = 1000; // Symbols per frame
+        symbolsToExecutePerFrame = 10000; // Symbols per frame
         GrammarSettings settings = GrammarSettingsLoader.loadGrammarFromConfigFile();
         initialDrawState = settings.initialDrawingState;
         settings.initialDrawingState.setX(displayWidth/2);

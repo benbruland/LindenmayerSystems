@@ -54,6 +54,8 @@ public class Grammar {
             if (grammarCharacters.containsKey(currentChar) && grammarCharacters.get(currentChar).isNonTerminal()) {
                 String expansion = grammarCharacters.get(currentChar).getExpansion();
                 temp.append(expansion);
+            } else {
+                temp.append(currentChar);
             }
         }
         accumulatedGrammar = temp;
