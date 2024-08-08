@@ -4,10 +4,9 @@ import com.sketch.Drawing.GrammarTurtle;
 import com.sketch.Grammar.GrammarSymbol;
 
 public class FlipHeading extends GrammarSymbol {
-    private GrammarTurtle turtle;
 
-    public FlipHeading(GrammarTurtle turtle) {
-        this.turtle = turtle;
+    public FlipHeading(char symbol, GrammarTurtle turtle) {
+        super(symbol, turtle);
     }
 
     public void exec() {

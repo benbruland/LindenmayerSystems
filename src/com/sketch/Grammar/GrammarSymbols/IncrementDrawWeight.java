@@ -4,14 +4,12 @@ import com.sketch.Drawing.GrammarTurtle;
 import com.sketch.Grammar.GrammarSymbol;
 
 public class IncrementDrawWeight extends GrammarSymbol {
-    private GrammarTurtle turtle;
 
-    public IncrementDrawWeight(GrammarTurtle turtle) {
-        this.turtle = turtle;
+    public IncrementDrawWeight(char symbol, GrammarTurtle turtle) {
+        super(symbol, turtle);
     }
 
     public void exec() {
-        turtle.drawWeight += turtle.drawWeightIncrement;
-        strokeWeight(turtle.drawWeight);
+        turtle.incrementLineWidth();
     }
 }

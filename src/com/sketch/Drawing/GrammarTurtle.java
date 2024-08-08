@@ -58,11 +58,13 @@ public class GrammarTurtle {
         rotate(this.state.getTurningAngle());
     }
 
-    public void forward() {
+    public void forward(boolean withLine) {
         float newX = this.state.getX() + cos(state.getHeading()) * state.getLineLength();
         float newY = this.state.getY() + sin(state.getHeading()) * state.getLineLength();
 
-        sketch.line(this.state.getX(), this.state.getY(), newX, newY);
+        if (withLine) {
+            sketch.line(this.state.getX(), this.state.getY(), newX, newY);
+        }
 
         if (this.state.isPolygonIsOpen()) {
             this.sketch.vertex(newX, newY);
@@ -70,6 +72,10 @@ public class GrammarTurtle {
 
         this.state.setX(newX);
         this.state.setY(newY);
+    }
+
+    public void forwardWithoutLine() {
+
     }
 
     public void setPosition(float x, float y) {
@@ -149,6 +155,45 @@ public class GrammarTurtle {
     }
 
     public void incrementRed() {
+        this.state.setRed(this.state.getRed() + this.state.getColorChangeRate());
+    }
+    public void incrementBlue() {
+        this.state.setRed(this.state.getBlue() + this.state.getColorChangeRate());
+    }
 
+    public void incrementGreen() {
+        this.state.setRed(this.state.getGreen() + this.state.getColorChangeRate());
+    }
+
+    public void decrementRed() {
+        this.state.setRed(this.state.getRed() - this.state.getColorChangeRate());
+    }
+
+    public void deccrementBlue() {
+        this.state.setRed(this.state.getBlue() - this.state.getColorChangeRate());
+    }
+
+    public void decrementGreen() {
+        this.state.setRed(this.state.getGreen() - this.state.getColorChangeRate());
+    }
+
+    public void incrementLineWidth() {
+        this.state.setLineWidth(this.state.getLineWidth() + this.state.getLineWidthIncrement());
+    }
+
+    public void decrementLineWidth() {
+        this.state.setLineWidth(this.state.getLineWidth() - this.state.getLineWidthIncrement());
+    }
+
+    public void increaseColorChangeRate() {
+        this.state.setColorRateAcceleration(this.state.getColorChangeRate() + this.state.getColorRateAcceleration());
+    }
+
+    public void decreaseColorChangeRate() {
+        this.state.setColorRateAcceleration(this.state.getColorChangeRate() - this.state.getColorRateAcceleration());
+    }
+
+    public void drawDot() {
+        sketch.circle(this.state.getX(), this.state.getY(), this.state.getLineWidth());
     }
 }

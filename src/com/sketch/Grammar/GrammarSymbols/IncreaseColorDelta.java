@@ -5,13 +5,11 @@ import com.sketch.Grammar.GrammarSymbol;
 
 public class IncreaseColorDelta extends GrammarSymbol {
 
-    private GrammarTurtle turtle;
-
-    public IncreaseColorDelta(GrammarTurtle turtle) {
-        this.turtle = turtle;
+    public IncreaseColorDelta(char symbol, GrammarTurtle turtle) {
+        super(symbol, turtle);
     }
 
     public void exec() {
-        turtle.colorDelta += 5.0;
+        turtle.increaseColorChangeRate();
     }
 }

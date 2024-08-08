@@ -17,9 +17,12 @@ public class TurtleState {
     private boolean polygonIsOpen;
     private float turningSign = 1.0f;
     private float alpha;
+
+    private float colorRateAcceleration;
+
     private float alphaIncrement;
 
-    private float lineWidthIncrement
+    private float lineWidthIncrement;
 
     public float getLineWidth() {
         return lineWidth;
@@ -153,8 +156,20 @@ public class TurtleState {
         return lineWidthIncrement;
     }
 
-    public void setDrawWeightIncrement(float drawWeightIncrement) {
-        this.drawWeightIncrement = drawWeightIncrement;
+    public void setDrawWeightIncrement(float lineWidthIncrement) {
+        this.lineWidthIncrement = lineWidthIncrement;
+    }
+
+    public float getColorRateAcceleration() {
+        return colorRateAcceleration;
+    }
+
+    public void setColorRateAcceleration(float colorRateAcceleration) {
+        this.colorRateAcceleration = colorRateAcceleration;
+    }
+
+    public void setLineWidthIncrement(float lineWidthIncrement) {
+        this.lineWidthIncrement = lineWidthIncrement;
     }
 
     public float getLineLengthIncrement() {
@@ -183,6 +198,7 @@ public class TurtleState {
         this.y = builder.y;
         this.turningSign = builder.turningSign;
         this.alpha = builder.alpha;
+        this.colorRateAcceleration = builder.colorChangeRateAcceleration;
         this.alphaIncrement = builder.alphaIncrement;
         this.lineWidthIncrement = builder.lineWidthIncrement;
         this.lineLengthIncrement = builder.lineLengthIncrement;
@@ -203,12 +219,18 @@ public class TurtleState {
         private float y;
         private float turningSign;
         private float alpha;
+        private float colorChangeRateAcceleration;
         private float alphaIncrement;
         private float lineWidthIncrement;
         private float lineLengthIncrement;
 
         public Builder setLineWidth(float lineWidth) {
             this.lineWidth = lineWidth;
+            return this;
+        }
+
+        public Builder setColorChangeRateAcceleration(float rate) {
+            this.colorChangeRateAcceleration = rate;
             return this;
         }
 
@@ -282,8 +304,8 @@ public class TurtleState {
             return this;
         }
 
-        public Builder setDrawWeightIncrement(float drawWeightIncrement) {
-            this.drawWeightIncrement = drawWeightIncrement;
+        public Builder setDrawWeightIncrement(float lineWidthIncrement) {
+            this.lineWidthIncrement = lineWidthIncrement;
             return this;
         }
 

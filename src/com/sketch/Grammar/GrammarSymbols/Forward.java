@@ -11,7 +11,7 @@ public class Forward extends GrammarSymbol  {
     }
 
     public void exec() {
-        turtle.forward();
+        turtle.forward(true);
     }
 }
 

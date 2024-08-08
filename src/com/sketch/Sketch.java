@@ -39,9 +39,9 @@ public class Sketch extends PApplet {
 
     public void mousePressed() {
         tortle.setPosition(mouseX, mouseY);
-        tortle.forward();
+        tortle.forward(true);
         tortle.turnRight();
-        tortle.forward();
+        tortle.forward(true);
         tortle.incrementBlue();
     }
 }
