@@ -23,7 +23,7 @@ public class Sketch extends PApplet {
         settings.initialDrawingState.setX(displayWidth/2);
         settings.initialDrawingState.setY(displayHeight);
 
-        turtle = new GrammarTurtle(this,  settings.initialDrawingState);
+        turtle = new GrammarTurtle(this, TurtleState.Builder.BuildCopy(initialDrawState));
         Grammar turtleGrammar = GrammarFactory.createGrammarFromOperations(settings, turtle);
         turtle.setGrammar(turtleGrammar);
         background(0,0,0);
@@ -46,13 +46,15 @@ public class Sketch extends PApplet {
 
     public void mousePressed() {
         instructionIndex = 0;
+        turtle.setState(TurtleState.Builder.BuildCopy(initialDrawState));
+        turtle.setPosition(mouseX,mouseY);
+        turtle.setSketchParams(initialDrawState);
         if (turtle.getGrammar() != null) {
             turtle.getGrammar().clearAccumulatedGrammar();
             turtle.getGrammar().accumulateGrammar(16);
             System.out.println(turtle.getGrammar().getLength());
         }
-        initialDrawState.setX(mouseX);
-        initialDrawState.setY(mouseY);
-        turtle.setState(initialDrawState);
+
+
     }
 }

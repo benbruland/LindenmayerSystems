@@ -1,11 +1,11 @@
 {
-  "axiom": "AFA",
+  "axiom": "FX",
   "initialDrawingState": {
     "lineWidth": 4,
-    "lineLength": 2,
+    "lineLength": 120,
     "lineLengthScalar": 0.82,
     "turningAngle": 30,
-    "angleIncrement": 5,
+    "angleIncrement": 0.5,
     "heading": 270,
     "colorChangeRate": 5,
     "red": 140,
@@ -18,50 +18,186 @@
     "alpha": 255,
     "colorRateAcceleration": 5,
     "alphaIncrement": 2,
-    "lineWidth578Increment": 3
+    "lineWidthIncrement": 0.5
   },
   "grammarOperations": [
     {
-      "operationName": "forward",
       "operationSymbol": "F",
+      "operationName": "Forward",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "f",
+      "operationName": "ForwardWithoutLine",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "+",
+      "operationName": "Left",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "-",
+      "operationName": "Right",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "|",
+      "operationName": "FlipHeading",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "[",
+      "operationName": "PushState",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "]",
+      "operationName": "PopState",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "#",
+      "operationName": "IncrementDrawWeight",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "!",
+      "operationName": "DecrementDrawWeight",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "@",
+      "operationName": "DrawDot",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "{",
+      "operationName": "OpenPolygon",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "}",
+      "operationName": "ClosePolygon",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": ">",
+      "operationName": "MultiplyLineLength",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "<",
+      "operationName": "DivideLineLength",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "&",
+      "operationName": "FlipHeading",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "(",
+      "operationName": "DecrementTurningAngle",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": ")",
+      "operationName": "IncrementTurningAngle",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "R",
+      "operationName": "IncrementRedChannel",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "G",
+      "operationName": "IncrementGreenChannel",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "B",
+      "operationName": "IncrementBlueChannel",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "r",
+      "operationName": "DecrementRedChannel",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "g",
+      "operationName": "DecrementGreenChannel",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "b",
+      "operationName": "DecrementBlueChannel",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "%",
+      "operationName": "IncreaseColorDelta",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "_",
+      "operationName": "DecrementAlpha",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "X",
+      "operationName": "NoOp",
       "operationExpansionWeights": [
         {
-          "value": "FFX",
+          "value": "!>)O[)O-F@XL]+F@XL",
+          "weight": 5
+        },
+        {
+          "value": "!>)[-FX]+FX",
           "weight": 1
         },
         {
-          "value": "XFF",
+          "value": "!>)[+FX|L]-F[FXL]XL",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "operationSymbol": "O",
+      "operationName": "noop",
+      "operationExpansionWeights": [
+        {
+          "value": "b",
+          "weight": 1
+        },
+        {
+          "value": "g",
+          "weight": 4
+        },
+        {
+          "value": "r",
+          "weight": 1
+        },
+        {
+          "value": "R",
+          "weight": 3
+        },
+        {
+          "value": "G",
+          "weight": 3
+        },
+        {
+          "value": "B",
           "weight": 3
         }
       ]
     },
     {
-      "operationName": "right",
-      "operationSymbol": "X",
-      "operationExpansionWeights": [
-        {
-          "value": "XFF",
-          "weight": 20
-        },
-        {
-          "value": "X",
-          "weight": 1
-        }
-      ]
-    },
-    {
+      "operationSymbol": "L",
       "operationName": "noop",
-      "operationSymbol": "A",
-      "operationExpansionWeights": [
-        {
-          "value": "AFX",
-          "weight": 9
-        },
-        {
-          "value": "AAAAAAAAAAAA",
-          "weight": 2
-        }
-      ]
+      "operationExpansionWeights": []
     }
   ]
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class GrammarFactory {
     private static GrammarSymbol createSymbolForOperation(GrammarOperation op, GrammarTurtle turtle) {
-        char opSymbol = op.operationSymbol.charAt(0);
+        Character opSymbol = op.operationSymbol;
         GrammarSymbol newSymbol;
         switch (op.operationName.toLowerCase()) {
             case "closepolygon":
@@ -96,6 +96,7 @@ public class GrammarFactory {
                 newSymbol = new NoOp(opSymbol, turtle);
                 break;
             default:
+                System.out.println("FKN REE: " + op.operationName);
                 return null;
         }
 

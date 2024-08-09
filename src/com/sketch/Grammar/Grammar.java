@@ -27,6 +27,10 @@ public class Grammar {
         }
     }
 
+    public GrammarSymbol getOperationForSymbol(char symbol) {
+        return this.grammarCharacters.get(symbol);
+    }
+
     public void accumulateGrammar(int numTimes) {
         for (int i = 0; i < numTimes; i++) {
             this.evaluateReplacements();
@@ -39,7 +43,9 @@ public class Grammar {
     }
 
     public void execGrammar(int instructionIndex) {
-        grammarCharacters.get(accumulatedGrammar.charAt(instructionIndex)).exec();
+        char character = accumulatedGrammar.charAt(instructionIndex);
+        GrammarSymbol symbolToExec = grammarCharacters.get(character);
+        symbolToExec.exec();
     }
 
     public void clearAccumulatedGrammar() {
@@ -47,15 +53,15 @@ public class Grammar {
     }
 
     private void evaluateReplacements() {
+        GrammarSymbol charToEval = null;
         StringBuilder temp = new StringBuilder();
 
         for (int i = 0; i < accumulatedGrammar.length(); i++) {
-            Character currentChar = accumulatedGrammar.charAt(i);
-            if (grammarCharacters.containsKey(currentChar) && grammarCharacters.get(currentChar).isNonTerminal()) {
-                String expansion = grammarCharacters.get(currentChar).getExpansion();
-                temp.append(expansion);
+            charToEval = getOperationForSymbol(accumulatedGrammar.charAt(i));
+            if (charToEval.isNonTerminal()) {
+                temp.append(charToEval.getExpansion());
             } else {
-                temp.append(currentChar);
+                temp.append(charToEval.symbol);
             }
         }
         accumulatedGrammar = temp;

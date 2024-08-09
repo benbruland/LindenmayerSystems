@@ -38,15 +38,17 @@ public class GrammarTurtle {
     }
 
     public void pushState() {
-        states.push(this.state);
+        states.push(TurtleState.Builder.BuildCopy(this.state));
     }
 
     public void popState() {
         if (!states.empty()) {
             TurtleState newState = states.pop();
+            this.state = newState;
             setSketchParams(newState);
         }
     }
+
     public void setSketchParams(TurtleState state) {
         sketch.stroke(state.getRed(), state.getBlue(), state.getGreen(), state.getAlpha());
         sketch.strokeWeight(state.getLineWidth());
@@ -75,8 +77,8 @@ public class GrammarTurtle {
     }
 
     public void forward(boolean withLine) {
-        float newX = this.state.getX() + cos(this.state.getHeading()) * this.state.getLineLength();
-        float newY = this.state.getY() + sin(this.state.getHeading()) * this.state.getLineLength();
+        float newX = this.state.getX() + cos(radians(this.state.getHeading())) * this.state.getLineLength(); ////random(turtle.lineLength * 0.4, turtle.lineLength * 1.5);
+        float newY = this.state.getY() + sin(radians(this.state.getHeading())) * this.state.getLineLength(); //random(turtle.lineLength * 0.4, turtle.lineLength * 1.5);
 
         if (withLine) {
             sketch.line(this.state.getX(), this.state.getY(), newX, newY);
@@ -194,7 +196,8 @@ public class GrammarTurtle {
     }
 
     public void decrementLineWidth() {
-        this.state.setLineWidth(this.state.getLineWidth() - this.state.getLineWidthIncrement());
+        float newWidth = max(this.state.getLineWidth() - this.state.getLineWidthIncrement(), 0.01f);
+        this.state.setLineWidth(newWidth);
     }
 
     public void increaseColorChangeRate() {

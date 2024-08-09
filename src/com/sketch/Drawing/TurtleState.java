@@ -198,10 +198,11 @@ public class TurtleState {
         this.y = builder.y;
         this.turningSign = builder.turningSign;
         this.alpha = builder.alpha;
-        this.colorRateAcceleration = builder.colorChangeRateAcceleration;
         this.alphaIncrement = builder.alphaIncrement;
         this.lineWidthIncrement = builder.lineWidthIncrement;
         this.lineLengthIncrement = builder.lineLengthIncrement;
+        this.polygonIsOpen = builder.polygonIsOpen;
+        this.colorRateAcceleration = builder.colorChangeRateAcceleration;
     }
 
     public static class Builder {
@@ -223,6 +224,11 @@ public class TurtleState {
         private float alphaIncrement;
         private float lineWidthIncrement;
         private float lineLengthIncrement;
+
+        private float colorRateAcceleration;
+
+        private boolean polygonIsOpen;
+
 
         public Builder setLineWidth(float lineWidth) {
             this.lineWidth = lineWidth;
@@ -316,6 +322,30 @@ public class TurtleState {
 
         public TurtleState build() {
             return new TurtleState(this);
+        }
+
+        public static TurtleState BuildCopy(TurtleState state) {
+            Builder copyBuilder = new Builder();
+            copyBuilder.lineWidth = state.lineWidth;
+            copyBuilder.lineLength = state.lineLength;
+            copyBuilder.lineLengthScalar = state.lineLengthScalar;
+            copyBuilder.turningAngle = state.turningAngle;
+            copyBuilder.angleIncrement = state.angleIncrement;
+            copyBuilder.heading = state.heading;
+            copyBuilder.colorChangeRate = state.colorChangeRate;
+            copyBuilder.red = state.red;
+            copyBuilder.green = state.green;
+            copyBuilder.blue = state.blue;
+            copyBuilder.x = state.x;
+            copyBuilder.y = state.y;
+            copyBuilder.polygonIsOpen = state.polygonIsOpen;
+            copyBuilder.turningSign = state.turningSign;
+            copyBuilder.alpha = state.alpha;
+            copyBuilder.colorRateAcceleration = state.colorRateAcceleration;
+            copyBuilder.alphaIncrement = state.alphaIncrement;
+            copyBuilder.lineWidthIncrement = state.lineWidthIncrement;
+
+            return copyBuilder.build();
         }
     }
 }
