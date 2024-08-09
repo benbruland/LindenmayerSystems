@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class GrammarSettings {
     public String axiom;
+    public int symbolsDrawnPerFrame;
+    public int maxDepth;
     public TurtleState initialDrawingState;
     public ArrayList<GrammarOperation> grammarOperations;
 }

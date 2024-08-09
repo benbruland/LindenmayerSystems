@@ -112,6 +112,7 @@ public class GrammarTurtle {
 
     public void openPolygon() {
         if (!this.state.isPolygonIsOpen()) {
+            sketch.noStroke();
             sketch.beginShape();
             this.state.setPolygonIsOpen(true);
         }
@@ -119,6 +120,7 @@ public class GrammarTurtle {
 
     public void closePolygon() {
         if (this.state.isPolygonIsOpen()) {
+            this.setSketchParams(this.state);
             this.state.setPolygonIsOpen(false);
             sketch.endShape();
         }
