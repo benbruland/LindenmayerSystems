@@ -29,6 +29,17 @@ public class Sketch extends PApplet {
         background(0,0,0);
     }
 
+    public void dispatchTurtleWithSettings() {
+        instructionIndex = 0;
+        GrammarSettings settings = GrammarSettingsLoader.loadGrammarFromConfigFile();
+        turtle = new GrammarTurtle(this, TurtleState.Builder.BuildCopy(settings.initialDrawingState));
+        turtle.setGrammar(GrammarFactory.createGrammarFromOperations(settings, turtle));
+        turtle.setPosition(mouseX, mouseY);
+        turtle.getGrammar().accumulateGrammar(16);
+        turtle.setSketchParams(initialDrawState);
+        initialDrawState = settings.initialDrawingState;
+    }
+
     public void settings() {
         size(displayWidth, displayHeight);
         smooth(8);
@@ -45,16 +56,12 @@ public class Sketch extends PApplet {
     }
 
     public void mousePressed() {
-        instructionIndex = 0;
-        turtle.setState(TurtleState.Builder.BuildCopy(initialDrawState));
-        turtle.setPosition(mouseX,mouseY);
-        turtle.setSketchParams(initialDrawState);
-        if (turtle.getGrammar() != null) {
-            turtle.getGrammar().clearAccumulatedGrammar();
-            turtle.getGrammar().accumulateGrammar(16);
-            System.out.println(turtle.getGrammar().getLength());
+        dispatchTurtleWithSettings();
+    }
+
+    public void keyPressed() {
+        if (key == 'R') {
+            background(0);
         }
-
-
     }
 }

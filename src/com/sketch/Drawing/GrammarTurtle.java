@@ -77,6 +77,7 @@ public class GrammarTurtle {
     }
 
     public void forward(boolean withLine) {
+        setSketchParams(this.state);
         float newX = this.state.getX() + cos(radians(this.state.getHeading())) * this.state.getLineLength(); ////random(turtle.lineLength * 0.4, turtle.lineLength * 1.5);
         float newY = this.state.getY() + sin(radians(this.state.getHeading())) * this.state.getLineLength(); //random(turtle.lineLength * 0.4, turtle.lineLength * 1.5);
 
@@ -172,11 +173,11 @@ public class GrammarTurtle {
         this.state.setRed(this.state.getRed() + this.state.getColorChangeRate());
     }
     public void incrementBlue() {
-        this.state.setRed(this.state.getBlue() + this.state.getColorChangeRate());
+        this.state.setBlue(this.state.getBlue() + this.state.getColorChangeRate());
     }
 
     public void incrementGreen() {
-        this.state.setRed(this.state.getGreen() + this.state.getColorChangeRate());
+        this.state.setGreen(this.state.getGreen() + this.state.getColorChangeRate());
     }
 
     public void decrementRed() {
@@ -184,11 +185,11 @@ public class GrammarTurtle {
     }
 
     public void deccrementBlue() {
-        this.state.setRed(this.state.getBlue() - this.state.getColorChangeRate());
+        this.state.setBlue(this.state.getBlue() - this.state.getColorChangeRate());
     }
 
     public void decrementGreen() {
-        this.state.setRed(this.state.getGreen() - this.state.getColorChangeRate());
+        this.state.setGreen(this.state.getGreen() - this.state.getColorChangeRate());
     }
 
     public void incrementLineWidth() {

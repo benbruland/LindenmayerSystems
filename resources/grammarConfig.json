@@ -7,9 +7,9 @@
     "turningAngle": 30,
     "angleIncrement": 0.5,
     "heading": 270,
-    "colorChangeRate": 5,
-    "red": 140,
-    "green": 255,
+    "colorChangeRate": 40,
+    "red": 255,
+    "green": 140,
     "blue": 140,
     "x": 0,
     "y": 0,
@@ -17,8 +17,8 @@
     "turningSign": 1.0,
     "alpha": 255,
     "colorRateAcceleration": 5,
-    "alphaIncrement": 2,
-    "lineWidthIncrement": 0.5
+    "alphaIncrement": 0,
+    "lineWidthIncrement": 0.25
   },
   "grammarOperations": [
     {
@@ -156,11 +156,11 @@
         },
         {
           "value": "!>)[-FX]+FX",
-          "weight": 1
+          "weight": 5
         },
         {
           "value": "!>)[+FX|L]-F[FXL]XL",
-          "weight": 1
+          "weight": 2
         }
       ]
     },
@@ -170,11 +170,11 @@
       "operationExpansionWeights": [
         {
           "value": "b",
-          "weight": 1
+          "weight": 3
         },
         {
           "value": "g",
-          "weight": 4
+          "weight": 1
         },
         {
           "value": "r",
