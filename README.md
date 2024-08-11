@@ -1,4 +1,4 @@
-Lindenmayer System Evaluator, implementation done in Java using the processing library core.
+Lindenmayer System Generator, implementation done in Java using the processing library core.
 
 Relies on GSON, processing core
 
