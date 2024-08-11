@@ -22,16 +22,12 @@ public abstract class GrammarSymbol {
         return expansions.draw();
     }
 
-    public void addExpansion(String expansion, double weight) {
-        this.expansions.add(new WeightedItem<String>(expansion, weight));
-    }
-
     public void addExpansion(WeightedItem<String> expansion) {
         this.expansions.add(expansion);
     }
 
     public boolean isNonTerminal() {
-        return !this.expansions.isEmpty();
+        return this.expansions != null && !this.expansions.isEmpty();
     }
 }
 
