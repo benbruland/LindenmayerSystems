@@ -5,7 +5,7 @@
   "initialDrawingState": {
     "lineWidth": 10,
     "lineLength": 120,
-    "lineLengthScalar": 0.82,
+    "lineLengthScalar": 0.85,
     "turningAngle": 20,
     "angleIncrement": 5.0,
     "heading": 270,
@@ -21,9 +21,9 @@
     "colorRateAcceleration": 1.25,
     "alphaIncrement": 2,
     "lineWidthIncrement": 0.755,
-    "lengthJitter": 0.05,
-    "jitterIncrement": 0.0,
-    "angularJitter": 1.0
+    "lengthJitter": 0.01,
+    "jitterIncrement": 0.01,
+    "angularJitter": 0.4
   },
   "grammarOperations": [
     {
@@ -81,7 +81,7 @@
         },
         {
           "value": "",
-          "weight": 10          
+          "weight": 70          
         },
         {
           "value": "[####@]",
@@ -198,7 +198,7 @@
         },
         {
           "value": "FX",
-          "weight": 0.001
+          "weight": 0.01
         }
       ]
     },
