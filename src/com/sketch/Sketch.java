@@ -15,7 +15,6 @@ public class Sketch extends PApplet {
     TurtleState initialDrawState;
     GrammarTurtle turtle;
     public void setup() {
-        smooth(8);
         instructionIndex = 0;
         symbolsToExecutePerFrame = 10000; // Symbols per frame
         GrammarSettings settings = GrammarSettingsLoader.loadGrammarFromConfigFile();

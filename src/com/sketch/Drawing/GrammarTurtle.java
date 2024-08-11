@@ -50,9 +50,9 @@ public class GrammarTurtle {
     }
 
     public void setSketchParams(TurtleState state) {
-        sketch.stroke(state.getRed(), state.getBlue(), state.getGreen(), state.getAlpha());
+        sketch.stroke(state.getRed(), state.getGreen(), state.getBlue(), state.getAlpha());
         sketch.strokeWeight(state.getLineWidth());
-        sketch.fill(state.getRed(), state.getBlue(), state.getGreen(), state.getAlpha());
+        sketch.fill(state.getRed(), state.getGreen(), state.getBlue(), state.getAlpha());
 
         if (this.state.isPolygonIsOpen() != state.isPolygonIsOpen() && state.isPolygonIsOpen()) {
             sketch.beginShape();
@@ -65,7 +65,8 @@ public class GrammarTurtle {
     }
 
     public void rotate(float degreesOfRotation) {
-        this.state.setHeading(this.state.getHeading() + degreesOfRotation);
+        float jitter = sketch.random(-this.state.getAngularJitter(), this.state.getAngularJitter());
+        this.state.setHeading(this.state.getHeading() + degreesOfRotation + (jitter * degreesOfRotation));
     }
 
     public void turnRight() {
@@ -128,10 +129,6 @@ public class GrammarTurtle {
 
 
     public void setAlpha(float alpha) {
-        if (alpha > 255) {
-            alpha = 255;
-        }
-
         if (alpha < 0) {
             alpha = 0;
         }
@@ -144,11 +141,11 @@ public class GrammarTurtle {
     }
 
     public void decrementAlpha() {
-        adjustAlpha(this.state.getAlphaIncrement());
+        adjustAlpha(-this.state.getAlphaIncrement());
     }
 
     public void incrementAlpha() {
-        adjustAlpha(-this.state.getAlphaIncrement());
+        adjustAlpha(this.state.getAlphaIncrement());
     }
 
     public void multiplyLineLength() {
@@ -174,6 +171,7 @@ public class GrammarTurtle {
     public void incrementRed() {
         this.state.setRed(this.state.getRed() + this.state.getColorChangeRate());
     }
+
     public void incrementBlue() {
         this.state.setBlue(this.state.getBlue() + this.state.getColorChangeRate());
     }
@@ -213,5 +211,22 @@ public class GrammarTurtle {
 
     public void drawDot() {
         sketch.circle(this.state.getX(), this.state.getY(), this.state.getLineWidth());
+    }
+
+    public void incrementLengthJitter() {
+        this.state.setLengthJitter(this.state.getLengthJitter() + this.state.getJitterIncrement());
+    }
+
+    public void decrementLengthJitter() {
+        float newJitter = max(this.state.getLengthJitter() - this.state.getJitterIncrement(), 0f);
+        this.state.setJitterIncrement(newJitter);
+    }
+
+    public void incrementColorChangeRate() {
+        this.state.setColorChangeRate(this.state.getColorChangeRate() + this.state.getColorRateAcceleration());
+    }
+
+    public void decrementColorChangeRate() {
+        this.state.setColorChangeRate(this.state.getColorChangeRate() - this.state.getColorRateAcceleration());
     }
 }

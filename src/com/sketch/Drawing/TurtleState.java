@@ -1,5 +1,6 @@
 package com.sketch.Drawing;
 
+
 public class TurtleState {
 
     private float lineWidth;
@@ -18,11 +19,19 @@ public class TurtleState {
     private float turningSign = 1.0f;
     private float alpha;
 
+    private float lengthJitter;
+
+    private float jitterIncrement;
+
     private float colorRateAcceleration;
 
     private float alphaIncrement;
 
     private float lineWidthIncrement;
+
+    private float lineLengthIncrement;
+
+    private float angularJitter;
 
     public float getLineWidth() {
         return lineWidth;
@@ -33,7 +42,19 @@ public class TurtleState {
     }
 
     public float getLineLength() {
-        return lineLength;
+        return lineLength + random(-lengthJitter, lengthJitter) * lineLength;
+    }
+
+    public float getAngularJitter() {
+        return angularJitter;
+    }
+
+    public void setAngularJitter(float jitter) {
+        this.angularJitter = jitter;
+    }
+
+    public float random(float min, float max) {
+        return (float)(min + Math.random() * (max - min));
     }
 
     public void setLineLength(float lineLength) {
@@ -168,6 +189,22 @@ public class TurtleState {
         this.colorRateAcceleration = colorRateAcceleration;
     }
 
+    public float getLengthJitter() {
+        return lengthJitter;
+    }
+
+    public void setLengthJitter(float lengthJitter) {
+        this.lengthJitter = lengthJitter;
+    }
+
+    public float getJitterIncrement() {
+        return jitterIncrement;
+    }
+
+    public void setJitterIncrement(float jitterIncrement) {
+        this.jitterIncrement = jitterIncrement;
+    }
+
     public void setLineWidthIncrement(float lineWidthIncrement) {
         this.lineWidthIncrement = lineWidthIncrement;
     }
@@ -180,7 +217,7 @@ public class TurtleState {
         this.lineLengthIncrement = lineLengthIncrement;
     }
 
-    private float lineLengthIncrement;
+
 
     // Private constructor to prevent direct instantiation
     private TurtleState(Builder builder) {
@@ -203,6 +240,9 @@ public class TurtleState {
         this.lineLengthIncrement = builder.lineLengthIncrement;
         this.polygonIsOpen = builder.polygonIsOpen;
         this.colorRateAcceleration = builder.colorChangeRateAcceleration;
+        this.jitterIncrement = builder.jitterIncrement;
+        this.lengthJitter = builder.lengthJitter;
+        this.angularJitter = builder.angularJitter;
     }
 
     public static class Builder {
@@ -224,10 +264,11 @@ public class TurtleState {
         private float alphaIncrement;
         private float lineWidthIncrement;
         private float lineLengthIncrement;
-
-        private float colorRateAcceleration;
-
+        private float lengthJitter;
+        private float jitterIncrement;
         private boolean polygonIsOpen;
+
+        private float angularJitter;
 
 
         public Builder setLineWidth(float lineWidth) {
@@ -341,9 +382,12 @@ public class TurtleState {
             copyBuilder.polygonIsOpen = state.polygonIsOpen;
             copyBuilder.turningSign = state.turningSign;
             copyBuilder.alpha = state.alpha;
-            copyBuilder.colorRateAcceleration = state.colorRateAcceleration;
             copyBuilder.alphaIncrement = state.alphaIncrement;
             copyBuilder.lineWidthIncrement = state.lineWidthIncrement;
+            copyBuilder.jitterIncrement = state.jitterIncrement;
+            copyBuilder.lengthJitter = state.lengthJitter;
+            copyBuilder.colorChangeRateAcceleration = state.colorRateAcceleration;
+            copyBuilder.angularJitter = state.angularJitter;
 
             return copyBuilder.build();
         }

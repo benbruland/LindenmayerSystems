@@ -95,13 +95,29 @@ public class GrammarFactory {
                 // Used for non-terminal expansions
                 newSymbol = new NoOp(opSymbol, turtle);
                 break;
+            case "incrementalpha":
+                newSymbol = new IncrementAlpha(opSymbol, turtle);
+                break;
+            case "decrementjitter":
+                newSymbol = new DecrementJitter(opSymbol, turtle);
+                break;
+            case "incrementjitter":
+                newSymbol = new IncrementJitter(opSymbol, turtle);
+                break;
+            case "incrementcolorchangerate":
+                newSymbol = new IncrementColorChangeRate(opSymbol, turtle);
+                break;
+            case "decrementcolorchangerate":
+                newSymbol = new DecrementColorChangeRate(opSymbol, turtle);
+                break;
             default:
-                System.out.println("FKN REE: " + op.operationName);
-                return null;
+                throw new RuntimeException("Skill issue");
         }
 
-        for (WeightedItem expansion : op.operationExpansionWeights) {
-            newSymbol.addExpansion(expansion);
+        if (op.operationExpansionWeights != null) {
+            for (WeightedItem expansion : op.operationExpansionWeights) {
+                newSymbol.addExpansion(expansion);
+            }
         }
 
         return newSymbol;
