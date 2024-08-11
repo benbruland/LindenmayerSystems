@@ -1,26 +1,29 @@
 {
   "axiom": "FX",
-  "maxDepth": 18,
-  "symbolsDrawnPerFrame": 50000,
+  "maxDepth": 22,
+  "symbolsDrawnPerFrame": 100000,
   "initialDrawingState": {
     "lineWidth": 10,
     "lineLength": 120,
     "lineLengthScalar": 0.82,
-    "turningAngle": 40,
-    "angleIncrement": 0.0,
+    "turningAngle": 20,
+    "angleIncrement": 5.0,
     "heading": 270,
-    "colorChangeRate": 20,
+    "colorChangeRate": 1,
     "red": 100,
-    "green": 140,
-    "blue": 25,
+    "green": 100,
+    "blue": 100,
     "x": 0,
     "y": 0,
     "polygonIsOpen": false,
     "turningSign": 1.0,
     "alpha": 255,
-    "colorRateAcceleration": 5,
-    "alphaIncrement": 0,
-    "lineWidthIncrement": 0.755
+    "colorRateAcceleration": 1.25,
+    "alphaIncrement": 2,
+    "lineWidthIncrement": 0.755,
+    "lengthJitter": 0.05,
+    "jitterIncrement": 0.0,
+    "angularJitter": 1.0
   },
   "grammarOperations": [
     {
@@ -71,7 +74,20 @@
     {
       "operationSymbol": "@",
       "operationName": "DrawDot",
-      "operationExpansionWeights": []
+      "operationExpansionWeights": [
+        {
+          "value": "@",
+          "weight": 70
+        },
+        {
+          "value": "",
+          "weight": 10          
+        },
+        {
+          "value": "[####@]",
+          "weight": 20
+        }
+      ]
     },
     {
       "operationSymbol": "{",
@@ -124,6 +140,11 @@
       "operationExpansionWeights": []
     },
     {
+      "operationSymbol": "%",
+      "operationName": "IncrementAlpha",
+      "operationExpansionWeights": []
+    },
+    {
       "operationSymbol": "r",
       "operationName": "DecrementRedChannel",
       "operationExpansionWeights": []
@@ -140,7 +161,16 @@
     },
     {
       "operationSymbol": "%",
-      "operationName": "IncreaseColorDelta",
+      "operationName": "IncrementAlpha",
+      "operationExpansionWeights": []
+    },
+    {
+        "operationName": "IncrementColorChangeRate",
+        "operationSymbol": "*"
+    },
+    {
+      "operationSymbol": "$",
+      "operationName": "DecrementColorChangeRate",
       "operationExpansionWeights": []
     },
     {
@@ -149,20 +179,26 @@
       "operationExpansionWeights": []
     },
     {
+      "operationSymbol": "~",
+      "operationName": "IncrementJitter",
+      "operationExpansionWeights": []
+    },
+    {
+      "operationSymbol": "'",
+      "operationName": "DecrementJitter",
+      "operationExpansionWeights": []
+    },
+    {
       "operationSymbol": "X",
       "operationName": "NoOp",
       "operationExpansionWeights": [
         {
-          "value": "!>[O-FX@]+FOX@",
+          "value": "!>[O-*F''X[###@]]+*FO'X@",
           "weight": 1
         },
         {
-          "value": "!>[O+FX@]-FOX@",
-          "weight": 1
-        },
-        {
-          "value": "[X]+!>[O-FX@]+FOX@",
-          "weight": 0.5
+          "value": "FX",
+          "weight": 0.001
         }
       ]
     },
@@ -184,7 +220,7 @@
         },
         {
           "value": "R",
-          "weight": 1
+          "weight": 3
         },
         {
           "value": "G",
@@ -192,34 +228,12 @@
         },
         {
           "value": "B",
-          "weight": 7
+          "weight": 2
+        },
+        {
+          "value": "%O",
+          "weight": 4.2
         }
-      ]
-    },
-    {
-      "operationSymbol": "L",
-      "operationName": "noop",
-      "operationExpansionWeights": [
-         {
-            "value": ">[-FX]+FX",
-            "weight": 1
-         },
-         {
-            "value": "[OO<<<<{f+f+f+f}]",
-            "weight": 0
-         },
-         {
-            "value": "[OOO>>>{f-f--f---ff+++f++f+f}]",
-            "weight": 0
-         },
-         {
-            "value": "[OO>>{f+f+f+f}++++++++++{f+f+f+f}]",
-            "weight": 0
-         },
-         {
-            "value": "[O>>>>>>%[FL]+[FL]+[FL]+[FL]]",
-            "weight": 0
-         }
       ]
     }
   ]
